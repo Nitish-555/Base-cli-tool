@@ -1,35 +1,29 @@
-# Review Checker
+# Code Analyzer
 
-Python CLI tool to verify NeatCode backend review quality and accuracy.
+Python CLI tool for analyzing code files.
 
 ## Setup
 
 ```bash
-# Install dependencies
-pip install -r requirements.txt
+# Install with uv
+uv sync
+
+# Or install dependencies directly
+uv pip install -r requirements.txt
 ```
 
 ## Usage
 
 ```bash
-# Check backend health
-python cli.py health
+# Analyze a file
+python cli.py analyze path/to/file.py
 
-# Check features (placeholder for now)
-python cli.py check --installation-id 999 --owner test-org --repo test-repo
-```
-
-## Configuration
-
-Set environment variable:
-```bash
-export NEATCODE_BACKEND_URL=http://localhost:3000
+# Get statistics
+python cli.py stats path/to/file.py
 ```
 
 ## Current Features
 
-- ✅ Backend health check
-- ⏳ Knowledge graph verification (to be added)
-- ⏳ Code embeddings verification (to be added)
-- ⏳ Grep search verification (to be added)
-
+- ✅ Basic file analysis
+- ✅ Count lines, functions, classes
+- ⏳ More analysis features (to be added)

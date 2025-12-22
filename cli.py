@@ -1,49 +1,38 @@
-"""CLI tool to check NeatCode backend features"""
+"""CLI tool for code analysis"""
 import click
-from backend import BackendClient
+from analyzer import CodeAnalyzer
 
 
 @click.group()
 def cli():
-    """Review Checker - Verify NeatCode backend"""
+    """Code Analyzer - Analyze code files"""
     pass
 
 
 @cli.command()
-def health():
-    """Check backend health"""
-    client = BackendClient()
-    result = client.health_check()
+@click.argument("file_path", type=click.Path(exists=True))
+def analyze(file_path):
+    """Analyze a code file"""
+    analyzer = CodeAnalyzer()
+    result = analyzer.analyze_file(file_path)
     
-    if result.get("healthy"):
-        click.echo("✅ Backend is healthy")
-    else:
-        click.echo("❌ Backend is not healthy")
-        if "error" in result:
-            click.echo(f"   Error: {result['error']}")
+    click.echo(f"📊 Analyzing: {file_path}\n")
+    click.echo(f"Lines: {result.get('lines', 0)}")
+    click.echo(f"Functions: {result.get('functions', 0)}")
+    click.echo(f"Classes: {result.get('classes', 0)}")
 
 
 @cli.command()
-@click.option("--installation-id", required=True, help="GitHub installation ID")
-@click.option("--owner", required=True, help="Repo owner")
-@click.option("--repo", required=True, help="Repo name")
-def check(installation_id, owner, repo):
-    """Check if features are working"""
-    client = BackendClient()
+@click.argument("file_path", type=click.Path(exists=True))
+def stats(file_path):
+    """Get file statistics"""
+    analyzer = CodeAnalyzer()
+    result = analyzer.analyze_file(file_path)
     
-    # Check backend first
-    health = client.health_check()
-    if not health.get("healthy"):
-        click.echo("❌ Backend is not healthy. Cannot check features.")
-        return
-    
-    click.echo("✅ Backend is healthy")
-    click.echo(f"\n📊 Checking features for {owner}/{repo}...")
-    click.echo("\n⏳ Knowledge Graph: Not yet implemented")
-    click.echo("⏳ Code Embeddings: Not yet implemented")
-    click.echo("⏳ Grep Search: Not yet implemented")
+    click.echo(f"📈 Statistics for: {file_path}\n")
+    for key, value in result.items():
+        click.echo(f"{key.capitalize()}: {value}")
 
 
 if __name__ == "__main__":
     cli()
-
