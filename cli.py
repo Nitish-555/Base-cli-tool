@@ -1,6 +1,6 @@
 """CLI tool to check NeatCode backend features"""
 import click
-from backend import BackendClient
+from eackend import BackendClient
 
 
 @click.group()
