@@ -1,0 +1,13 @@
+[project]
+name = "review-checker"
+version = "0.1.0"
+description = "CLI tool to verify NeatCode backend review quality"
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.31.0",
+    "click>=8.1.7",
+]
+
+[project.scripts]
+review-checker = "cli:cli"
+

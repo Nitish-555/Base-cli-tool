@@ -5,8 +5,11 @@ Python CLI tool to verify NeatCode backend review quality and accuracy.
 ## Setup
 
 ```bash
-# Install dependencies
-pip install -r requirements.txt
+# Install with uv (creates venv automatically)
+uv sync
+
+# Or install dependencies directly
+uv pip install -r requirements.txt
 ```
 
 ## Usage

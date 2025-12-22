@@ -3,7 +3,7 @@ import os
 import requests
 
 # Simple config
-BACKEND_URL = os.getenv("NEATCODE_BACKEND_URL", "http://localhost:3000")
+BACKEND_URL = os.getenv("NEATCODE_BACKEND_URL", "https://acclimatable-tanya-erratically.ngrok-free.dev")
 TIMEOUT = 30
 
 
