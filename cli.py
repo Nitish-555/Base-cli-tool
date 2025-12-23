@@ -20,6 +20,7 @@ def analyze(file_path):
     click.echo(f"Lines: {result.get('lines', 0)}")
     click.echo(f"Functions: {result.get('functions', 0)}")
     click.echo(f"Classes: {result.get('classes', 0)}")
+    click.echo(f"Comments: {result.get('comments', 0)}")
 
 
 @cli.command()

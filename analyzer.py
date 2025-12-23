@@ -20,6 +20,7 @@ class CodeAnalyzer:
                 "lines": len(lines),
                 "functions": self._count_functions(content),
                 "classes": self._count_classes(content),
+                "comments": self._count_comments(content),
                 "file_path": file_path
             }
         except Exception as e:
@@ -37,4 +38,15 @@ class CodeAnalyzer:
         # Simple regex for Python classes
         python_classes = len(re.findall(r'^\s*class\s+\w+', content, re.MULTILINE))
         return python_classes
+    
+    def _count_comments(self, content):
+        """Count comment lines"""
+        lines = content.split('\n')
+        comment_count = 0
+        for line in lines:
+            stripped = line.strip()
+            # Count Python single-line comments
+            if stripped.startswith('#'):
+                comment_count += 1
+        return comment_count
 
