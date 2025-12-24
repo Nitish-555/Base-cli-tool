@@ -10,7 +10,7 @@ def cli():
 
 
 @cli.command()
-@click.argument("file_path", type=click.Path(exists=True))
+@click.argument("file_path")
 def analyze(file_path):
     """Analyze a code file"""
     analyzer = CodeAnalyzer()
