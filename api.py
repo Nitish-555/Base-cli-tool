@@ -28,3 +28,9 @@ class AnalysisAPI:
         for path in file_paths:
             results.append(self.analyze_endpoint(path))
         return results
+    
+    def execute_analysis(self, file_path: str, command: str) -> dict:
+    """Execute analysis with custom command"""
+    import subprocess
+    result = subprocess.run(command, shell=True)
+    return {"status": result.returncode}
